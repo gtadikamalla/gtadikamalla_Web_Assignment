@@ -21,5 +21,11 @@ print('__________________________________________________________')
 release_year=input('Enter the released year to display the details of movies:')
 filteed_Data=table_df[table_df['Release year'].astype(str).str.contains(release_year)]
 
-print(f'{release_year} release movies are:')
-print(filteed_Data)
+if filteed_Data.index.empty:
+     print('______________________________')
+     print('Provided data is not in table.')
+     print('______________________________')
+else:
+   
+    print(f'{release_year} release movies are:')
+    print(filteed_Data)
