@@ -9,13 +9,13 @@ print(len(dataFrames))
 
 table1=dataFrames[1]
 
-table1.to_csv('Task2_table.csv',index=False)
+table1.to_csv('Task1_table.csv',index=False)
 
 print(table1)
 
 #Task2b
 
-table_df=pd.read_csv('Task2_table.csv')
+table_df=pd.read_csv('Task1_table.csv')
 
 print('__________________________________________________________')
 release_year=input('Enter the released year to display the details of movies:')
