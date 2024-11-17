@@ -22,6 +22,7 @@ while True:
         print('Invalid input. Please enter only year.')
         print('______________________________________')
         continue
+    
     Country_Code=input("Enter country code (AD or AL or AM or AR or AT):")
     if not Country_Code.isalpha():
         print('___________________')
@@ -29,9 +30,16 @@ while True:
         print('___________________________________________________')
         continue
 
+
     API_URL += Year +'/'+Country_Code
 
     response= requests.get(API_URL)
+
+    if response.status_code != 200:
+        print(f"Error: Unable to fetch data. HTTP Status Code: {response.status_code}")
+        print(f"Reason: {response.reason}")
+        continue
+
 
     data=response.json()
 
@@ -41,11 +49,15 @@ while True:
 
     print(holidays_df)
     print('____________________________________________________________')
-    print('In JSON format:')
+    """print('In JSON format:')
     print('================')
-
-    print(json.dumps(data, indent=4))
-
+    print(json.dumps(data, indent=4))"""
+    print(data)
+    for holiday in data:
+        print('______________________')
+        for k, v in holiday.items():
+            print(f'{k}: {v}')
+    
     choice=input('Do you want to continue or quit? (Enter c/q):')
     if choice in 'cC':
         continue
